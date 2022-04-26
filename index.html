@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="icon" type="image/png" href="images/favicon.ico">
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+  <title>Nhi Nhi</title>
+  <script type="text/javascript" src="./renxi/jquery.min.js"></script>
+  <script type="text/javascript" src="./renxi/jscex.min.js"></script>
+  <script type="text/javascript" src="./renxi/jscex-parser.js"></script>
+  <script type="text/javascript" src="./renxi/jscex-jit.js"></script>
+  <script type="text/javascript" src="./renxi/jscex-builderbase.min.js"></script>
+  <script type="text/javascript" src="./renxi/jscex-async.min.js"></script>
+  <script type="text/javascript" src="./renxi/jscex-async-powerpack.min.js"></script>
+  <script type="text/javascript" src="./renxi/functions.js" charset="utf-8"></script>
+  <script type="text/javascript" charset="utf-8">
+
+  function hasClassName(inElement, inClassName){
+    var regExp = new RegExp('(?:^|\\s+)' + inClassName + '(?:\\s+|$)');
+    return regExp.test(inElement.className);
+  }
+
+  function addClassName(inElement, inClassName){
+    if (!hasClassName(inElement, inClassName))
+        inElement.className = [inElement.className, inClassName].join(' ');
+  }
+
+  function removeClassName(inElement, inClassName){
+    if (hasClassName(inElement, inClassName)) {
+        var regExp = new RegExp('(?:^|\\s+)' + inClassName + '(?:\\s+|$)', 'g');
+        var curClasses = inElement.className;
+        inElement.className = curClasses.replace(regExp, ' ');
+    }
+  }
+
+  function toggleClassName(inElement, inClassName)
+  {
+    if (hasClassName(inElement, inClassName))
+        removeClassName(inElement, inClassName);
+    else
+        addClassName(inElement, inClassName);
+  }
+
+  function toggleShape(){
+    var shape = document.getElementById('shape');
+
+    if (hasClassName(shape, 'cube') || hasClassName(shape, 'autoLoad')) {
+      if (hasClassName(shape, 'cube')) {
+        removeClassName(shape, 'cube');
+      }
+      if (hasClassName(shape, 'autoLoad')) {
+        removeClassName(shape, 'autoLoad');
+      }
+      addClassName(shape, 'ring');
+
+    }else {
+      removeClassName(shape, 'ring');
+      addClassName(shape, 'cube');
+    }
+    
+    var stage = document.getElementById('stage');
+    if (hasClassName(shape, 'ring'))
+      stage.style.webkitTransform = 'translateZ(-200px)';
+    else
+      stage.style.webkitTransform = '';
+  }
+
+  function downloadLink(){
+    location.href = 'http://redirect.nhq.vn/demo/3d-css.zip';
+  }
+
+  var count = 0;
+  var timer;
+
+  function timedCount() {
+    if(count >= 8) {
+      count = 0;
+      autoLoad();
+    } else {
+      count = count + 1;
+    }
+    timer = setTimeout(timedCount, 1000);
+  }
+
+  function autoLoad() {
+    var shapeTest = document.getElementById('shape');
+    if(hasClassName(shapeTest, 'cube')) {
+      removeClassName(shapeTest, 'cube');
+      addClassName(shapeTest, 'autoLoad');
+    }else {
+      toggleShape();
+    }
+  }
+
+  window.onload = function() {
+    document.getElementById("audioplayer").play();
+  }
+
+  </script>
+
+</head>
+
+<body onload="timedCount()">
+  <div id="banner">
+    <img src="images/banner2.jpg"/> 
+  </div>
+  
+  <div id="container">
+    <div id="stage">
+      <div id="shape" class="cube backfaces">
+        <div class="plane one"></div>
+        <div class="plane two"></div>
+        <div class="plane three"></div>
+        <div class="plane four"></div>
+        <div class="plane five"></div>
+        <div class="plane six"></div>
+        <div class="plane seven"></div>
+        <div class="plane eight"></div>
+        <div class="plane nine"></div>
+        <div class="plane ten"></div>
+        <div class="plane eleven"></div>
+        <div class="plane twelve"></div> 
+      </div>
+    </div>
+  </div>
+  
+  <div id ="music"> 
+    <audio onclick="abcdef()" controls id="audioplayer" >
+      <source src="nhac/YourSmile.mp3" type="audio/mpeg" autoplay>
+    </audio>
+  </div>
+     
+  <div id="code">
+    <font color="#FFFFFF" >
+      <span class="say">                                                                                 </span><br>
+      <span class="say"> <strong> Hi Nhi,</strong></span><br>
+      <span class="say"> <strong> Cậu sẽ không đánh bản quyền vì tớ sử dụng hình ảnh của</strong> </span><br>
+      <span class="say"> <strong>cậu mà không xin phép trước ha :D. </strong> </span><br>
+      <span class="say"> <strong> Nay sinh nhật cậu ha, tớ có một thứ nho nhỏ tặng cậu này, </strong> </span><br>
+      <span class="say"> <strong>mở lên nhìn nó xoay xoay cũng vui ha xD.</strong> </span><br>
+      <span class="say">                   </span><br>
+      <span class="say"> <strong> Một ngày ý nghĩa ha, luôn gặp nhìu may mắn trong cuộc sống, </strong> </span><br>
+      <span class="say"> <strong>chúc sức khỏe, luôn vui vẻ, hạnh phúc nè, gặp đúng người nè. </strong> </span><br>
+      <span class="say">                            </span><br>
+      <span class="say"> <strong> 27/04/1999 - 27/04/2022 Sinh nhật ấm áp.</strong> </span><br>
+      <span class="say"><span class="space"></span> -- xxx --</span>
+    </font></p>
+  </div>
+
+  <script>
+
+    var textAnimate = eval(Jscex.compile("async", function () {
+      $("#code").show().typewriter();
+    }));
+
+    var runAsync = eval(Jscex.compile("async", function () {
+        textAnimate().start();
+    }));
+    runAsync().start();
+
+  </script>
+
+</body>
+</html>
