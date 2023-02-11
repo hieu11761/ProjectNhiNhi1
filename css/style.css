@@ -30,9 +30,9 @@ body {
     #shape {
       position: absolute;
       top: 50%;
-      left: 70%;
+      left: 50%;
 
-      margin-top: 180px;
+      margin-top: 200px;
       height: 200px;
       width: 200px;
       -webkit-transform-style: preserve-3d;
